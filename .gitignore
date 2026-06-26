@@ -2,3 +2,4 @@
 .mvn/
 # files
 .DS_Store
+.env
