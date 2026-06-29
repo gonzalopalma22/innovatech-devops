@@ -4,7 +4,7 @@
 
 Sistema distribuido compuesto por dos microservicios Spring Boot y un frontend React, desplegado en AWS ECS con Fargate mediante un pipeline CI/CD automatizado con GitHub Actions.
 
-## Arquitectura
+## Arquitectura del proyecto
 
     Internet → ALB (puerto 80/8080/8081)
                   ├── frontend-service  (puerto 80)  → ECR innovatech-frontend
