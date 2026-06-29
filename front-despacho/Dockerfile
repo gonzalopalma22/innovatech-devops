@@ -1,4 +1,4 @@
-# Etapa 1: Build
+# Primera Etapa: Build
 FROM node:20-alpine AS build
 
 WORKDIR /app
@@ -15,7 +15,7 @@ ENV VITE_API_DESPACHOS=$VITE_API_DESPACHOS
 
 RUN npm run build
 
-# Etapa 2: Serve con Nginx
+# Segunda Etapa: Serve con Nginx
 FROM nginx:1.25-alpine
 
 RUN rm /etc/nginx/conf.d/default.conf
