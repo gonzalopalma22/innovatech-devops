@@ -15,6 +15,6 @@ target/
 docker-compose.override.yml
 Dockerfile*
 
-# Ignora archivos temporales
+# Ignorar archivos temporales
 *.swp
 *~
