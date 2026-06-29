@@ -42,7 +42,7 @@ Sistema distribuido compuesto por dos microservicios Spring Boot y un frontend R
 
 Se utiliza el rol `LabRole` de AWS Academy tanto como Task Role y Task Execution Role. Este rol incluye permisos para ECR, ECS, CloudWatch y RDS.
 
-### Base de datos
+### Base de   datos
 
 - **Motor**: MySQL 8.4.8 en Amazon RDS
 - **Instancia**: db.t3.micro
@@ -143,7 +143,7 @@ Durante la configuración el clúster no aparecía en la lista. Se resolvió rec
 
 Los contenedores en subnets privadas no podían descargar imágenes desde ECR ni enviar logs a CloudWatch. Se resolvió creando un NAT Gateway público (`innovatech-nat`) en la subnet pública `us-east-1a` y configurando las tablas de enrutamiento de las subnets privadas para apuntar el tráfico `0.0.0.0/0` hacia el NAT Gateway.
 
-## Métricas del pipeline
+## Metricas del pipeline
 
 Tiempos aproximados observados en GitHub Actions:
 
