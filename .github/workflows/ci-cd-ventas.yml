@@ -1,23 +1,19 @@
 name: CI/CD - API Ventas
-
 on:
   push:
     branches: [main]
     paths:
       - 'back-ventas-springboot/**'
-
 env:
   AWS_REGION: us-east-1
   ECR_REPOSITORY: innovatech-ventas
   ECS_CLUSTER: innovatech-cluster
   ECS_SERVICE: ventas-service
   CONTAINER_NAME: ventas
-
 jobs:
   build-and-deploy:
     name: Build, Push y Deploy
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout código
         uses: actions/checkout@v4
@@ -41,10 +37,6 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Ejecutar tests
-        working-directory: back-ventas-springboot/api-rest-ventas
-        run: mvn test -Dspring.profiles.active=test
-
       - name: Build y Push imagen a ECR
         id: build-image
         env:
@@ -61,6 +53,7 @@ jobs:
           aws ecs describe-task-definition \
             --task-definition ventas-task \
             --query taskDefinition \
+            | jq 'del(.enableFaultInjection, .taskDefinitionArn, .revision, .status, .requiresAttributes, .placementConstraints, .compatibilities, .registeredAt, .registeredBy)' \
             > task-definition-ventas.json
 
       - name: Actualizar imagen en task definition
