@@ -1,20 +1,20 @@
-# Ignora archivos de configuración locales
+# Ignora los archivos de configuración locales
 .env
 *.iml
 .idea/
 *.log
 
-# Ignora dependencias locales
+# Ignora las dependencias locales
 target/
 .mvn/
 .settings/
 
-# Ignora control de versiones y sistema de build
+# Ignora el control de versiones y sistema de build
 .git/
 .gitignore
 docker-compose.override.yml
 Dockerfile*
 
-# Ignorar archivos temporales
+# Ignorar los archivos temporales
 *.swp
 *~
