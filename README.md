@@ -28,6 +28,7 @@ Sistema distribuido compuesto por dos microservicios Spring Boot y un frontend R
 - **VPC**: `innovatech-vpc` (10.0.0.0/16)
 - **Subnets públicas**: 2 (us-east-1a, us-east-1b) — para el ALB
 - **Subnets privadas**: 2 (us-east-1a, us-east-1b) — para los contenedores ECS
+- **NAT Gateway**: `innovatech-nat` (Public, Zonal) ubicado en `innovatech-subnet-public1-us-east-1a`. Permite que los contenedores ECS en subnets privadas salgan a internet para descargar imágenes desde ECR y enviar logs a CloudWatch.
 
 ### Security Groups
 
@@ -137,6 +138,10 @@ Los servicios mostraban tareas pendientes porque no había imágenes en ECR ante
 ### 5. Clúster ECS no visible en consola
 
 Durante la configuración el clúster no aparecía en la lista. Se resolvió recreándolo, ya que la primera creación falló silenciosamente.
+
+### 6. Contenedores ECS sin acceso a internet
+
+Los contenedores en subnets privadas no podían descargar imágenes desde ECR ni enviar logs a CloudWatch. Se resolvió creando un NAT Gateway público (`innovatech-nat`) en la subnet pública `us-east-1a` y configurando las tablas de enrutamiento de las subnets privadas para apuntar el tráfico `0.0.0.0/0` hacia el NAT Gateway.
 
 ## Métricas del pipeline
 
